@@ -10,10 +10,11 @@ import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 
 // Create sagaMiddleware
-const sagaMiddleware = createSagaMiddleware();
+// const sagaMiddleware = createSagaMiddleware();
 
-// Pass rootSaga into our sagaMiddleware
-sagaMiddleware.run(rootSaga);
+// // Pass rootSaga into our sagaMiddleware
+// sagaMiddleware.run(rootSaga);
+
 
 // Create the rootSaga generator function
 function* rootSaga() {
@@ -135,6 +136,7 @@ const categoriesReducer = (state = [], action) => {
     return state;
 };
 
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
@@ -143,7 +145,7 @@ const storeInstance = createStore(
         categoriesReducer
     }),
     // Add sagaMiddleware to our store
-    applyMiddleware(sagaMiddleware, logger),
+    // applyMiddleware(sagaMiddleware, logger),
 );
 
 ReactDOM.render(
