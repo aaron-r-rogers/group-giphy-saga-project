@@ -10,6 +10,9 @@ router.get('/', (req, res) => {
 
 // add a new favorite
 router.post('/', (req, res) => {
+  const sqlText = `
+  INSERT INTO "image" ("url")
+  VALUES (${req.body});`
   res.sendStatus(200);
 });
 

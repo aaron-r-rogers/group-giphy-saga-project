@@ -10,20 +10,18 @@ import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 
 // Create sagaMiddleware
-// const sagaMiddleware = createSagaMiddleware();
-
-// // Pass rootSaga into our sagaMiddleware
-// sagaMiddleware.run(rootSaga);
-
+const sagaMiddleware = createSagaMiddleware();
 
 // Create the rootSaga generator function
 function* rootSaga() {
-    // does searchResults need to be a Saga or just a reducer?
     yield takeEvery('GET_SEARCH', getSearch);//GET
     yield takeEvery('MAKE_FAVORITE', makeFavorite);//POST
     yield takeEvery('FETCH_FAVORITES', fetchFavorites);//GET
     yield takeEvery('FETCH_CATEGORIES', fetchCategories);//GET
+    yield takeEvery('ADD_CATEGORY', addCategory);//POST
 };
+
+// /api/favorite
 
 function* getSearch (action) {
     try{
@@ -59,15 +57,10 @@ const searchResults = (state = [], action) => {
 function* makeFavorite (action) {
     console.log('in makeFavorite', action);
 
-    // action.payload looks like this...
-    // {
-    //     image_id: '',
-    //     category_id: ''
-    // }
-
     // Post favorite to the server
+    // action.payload is url; write sql in router
     yield axios.post('/api/favorite', action.payload);
-
+    
     // Run the fetchFavorites saga to get latest favs...
     yield put({
         type: 'FETCH_FAVORITES'
@@ -99,7 +92,7 @@ function* fetchFavorites () {
 const favoritesReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_FAVORITES':
-            return [...state, ...action.payload];
+            return action.payload;
         default:
             return state;
     }
@@ -145,8 +138,11 @@ const storeInstance = createStore(
         categoriesReducer
     }),
     // Add sagaMiddleware to our store
-    // applyMiddleware(sagaMiddleware, logger),
+    applyMiddleware(sagaMiddleware, logger),
 );
+
+// Pass rootSaga into our sagaMiddleware
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
     <Provider store={storeInstance}>

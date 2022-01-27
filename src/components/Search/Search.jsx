@@ -33,7 +33,7 @@ function Search () {
                     type='text'
                     placeholder='Search'
                     value={searchInput}
-                    onChange={(event) => setNewGif(event.target.value)}
+                    onChange={(event) => setSearchInput(event.target.value)}
                 />
                 <button onClick={searchGiphy}>Search</button>
             </form>
