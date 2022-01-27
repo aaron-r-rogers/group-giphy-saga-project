@@ -3,13 +3,13 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
-router.get('/search', (req, res) => {
+router.get('/', (req, res) => {
     axios({
         method: 'GET',
         url: 'https://api.giphy.com/v1/gifs/search',
         params: {
             api_key: process.env.GIPHY_API_KEY,
-            q: '',
+            q: req.query.q,
             limit: 6
         }
     })
