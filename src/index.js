@@ -10,19 +10,19 @@ import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 
 // Create sagaMiddleware
-const sagaMiddleware = createSagaMiddleware();
+// const sagaMiddleware = createSagaMiddleware();
 
-// Pass rootSaga into our sagaMiddleware
-sagaMiddleware.run(rootSaga);
+// // Pass rootSaga into our sagaMiddleware
+// sagaMiddleware.run(rootSaga);
 
-// Create the rootSaga generator function
-function* rootSaga() {
-    yield takeEvery('FETCH_IMAGE', fetchImage);
-}
+// // Create the rootSaga generator function
+// function* rootSaga() {
+//     yield takeEvery('FETCH_IMAGE', fetchImage);
+// }
 
-const images {
-    id: ''
-}
+// const images {
+//     id: ''
+// }
 
 // Create one store that all components can use
 const storeInstance = createStore(
@@ -30,7 +30,7 @@ const storeInstance = createStore(
         
     }),
     // Add sagaMiddleware to our store
-    applyMiddleware(sagaMiddleware, logger),
+    // applyMiddleware(sagaMiddleware, logger),
 );
 
 ReactDOM.render(
