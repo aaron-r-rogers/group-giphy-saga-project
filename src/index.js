@@ -24,6 +24,8 @@ function* rootSaga() {
 // /api/favorite
 
 function* getSearch (action) {
+    console.log('action in get search', action);
+    
     try{
     console.log('made it to getSearch');
     let response = yield axios.get('/search', {params: {q: action.payload}});
@@ -49,7 +51,7 @@ function* getSearch (action) {
 const searchResults = (state = [], action) => {
     if(action.type === 'SEARCH_GIF') {
         console.log('search payload:', action.payload);
-        return action.payload
+        return action.payload.data
     }
     return state;
 };
