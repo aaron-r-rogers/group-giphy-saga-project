@@ -20,7 +20,7 @@ function Search () {
         })
     }; // end of searchGiphy
 
-    const clickhandler = (url) => {
+    const clickHandler = (url) => {
         console.log('click', url)
         dispatch({
             type: 'MAKE_FAVORITE',
@@ -49,7 +49,7 @@ function Search () {
                     <img  
                         src={gif.images.fixed_height.url}
                     />
-                    <FavoriteIcon style={{ color: 'red' }}  onClick={() => clickhandler(gif.images.fixed_height.url)} />
+                    <FavoriteIcon style={{ color: 'red' }}  onClick={() => clickHandler(gif.images.fixed_height.url)} />
                     </div>
                 ))}
             </div>
