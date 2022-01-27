@@ -28,3 +28,12 @@ router.delete('/', (req, res) => {
 });
 
 module.exports = router;
+
+
+// axios({
+//   method: 'GET',
+//   url: 'https://api.giphy.com/v1/gifs/random',
+//   params: {
+//     api_key: process.env.GIPHY_API_KEY
+//   }
+// })
