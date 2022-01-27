@@ -18,7 +18,7 @@ function* rootSaga() {
     yield takeEvery('MAKE_FAVORITE', makeFavorite);//POST
     yield takeEvery('FETCH_FAVORITES', fetchFavorites);//GET
     yield takeEvery('FETCH_CATEGORIES', fetchCategories);//GET
-    yield takeEvery('ADD_CATEGORY', addCategory);//POST
+    //yield takeEvery('ADD_CATEGORY', addCategory);//POST
 };
 
 // /api/favorite
