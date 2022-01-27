@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function Search () {
     const dispatch = useDispatch();
-    // const searchResult = useSelector((store) store.searchResult)
-    let [newGif, setNewGif] = useState('');
+    // const searchResults = useSelector((store) store.searchResults)
+    let [searchInput, setSearchInput] = useState('');
 
 
     // search bar that have local state
@@ -17,9 +17,10 @@ function Search () {
     const searchGiphy = () => {
         console.log('search', searchGiphy);
 
-
+        // sending this to rootSaga
         dispatch({
-            type: 'SEARCH_GIF'
+            type: 'GET_SEARCH',
+            payload: searchInput
         })
     }
 
@@ -31,15 +32,15 @@ function Search () {
                 <input 
                     type='text'
                     placeholder='Search'
-                    value={newGif}
+                    value={searchInput}
                     onChange={(event) => setNewGif(event.target.value)}
                 />
                 <button onClick={searchGiphy}>Search</button>
             </form>
 
             {/* <div>
-                {searchResult.map((gif) => (
-                    <img  key={searchResult.id}  />
+                {searchResults.map((gif) => (
+                    <img  key={gif.id}   />
                 ))}
             </div> */}
 
