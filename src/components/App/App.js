@@ -12,10 +12,11 @@ function App(props) {
   const dispatch = useDispatch();
   const getElements = () => {
     dispatch({
-      type: 'FETCH_FAVORITES'
-    });
-    dispatch({
       type: 'FETCH_CATEGORIES'
+    });
+
+    dispatch({
+      type: 'FETCH_FAVORITES'
     });
   }
 

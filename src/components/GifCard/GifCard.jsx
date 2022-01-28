@@ -5,7 +5,7 @@ import CategoriesList from '../CategoriesList/CategoriesList'
 
 function GifCard({favorite}) {
   const image = favorite.url;
-  console.log('image', image);
+  // console.log('image', image);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia

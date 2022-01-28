@@ -1,37 +1,70 @@
-function Category({ category, favorite }) {
-  // {if (favorite.)} // ???
-  // const categoryJunction = useSelector(store => store.junctionReducer);
+import Button from '@mui/material/Button';
+import { useDispatch, useSelector } from 'react-redux';
 
-  // need to see if category.id === junction.category_id (basically if the category is included in this one)
-  // if yes: 
-  // render this:
-  // <Button variant="contained" onClick={(evt) => removeCategory(favorite.id, category.id)}>{category.name}</Button>
-  //if no:
-  // render this:
-  // <Button variant="outlined" onClick={(evt) => addCategory(favorite.id, category.id)>{category.name}</Button>
-  // the code for this 👆 
-  // is found below: 👇 
-  // un comment when we get the router done
-  /*
-  for (let junction of categoryJunction.data) {
-    if (favorite.id === junction.favorite_id && category.id === junction.category_id) {
-      return (
-        <Button variant="contained" onClick={(evt) => removeCategory(favorite.id, category.id)}>{category.name}</Button>
-      )
-    } else {
-      return (
-        <Button variant="outlined" onClick={(evt) => addCategory(favorite.id, category.id)}>{category.name}</Button>
-      )
-    }
+
+function Category({ favorite, category }) {
+  const categoryList = useSelector(store => store.categoriesReducer);
+  const removeCategory = (favId, catId) => {
+    console.log('remove!', favId, catId)
+    // dispatch({
+    //   type: 'REMOVE_CATEGORY',
+    //   payload: {
+    //     category_id: catId,
+    //     favorite_id: favId
+    //   }
+    // })
   }
-  */
 
-  return(
-    <>
-      {category.name} <br />
-    </>
+  const addCategory = (favId, catId) => {
+    console.log('add!', favId, catId)
+    // dispatch({
+    //   type: 'ADD_CATEGORY',
+    //   payload: {
+    //     category_id: catId,
+    //     favorite_id: favId
+    //   }
+    // })
+  }
+
+  categoryList.map(parameter => {
+    parameter.image_id_arr.map(imageID => {
+      if (parameter.id === category.id && imageID !== null) {
+        console.log(`imageID`, imageID, 'has category', parameter.id)
+        return (
+          <Button
+            variant="contained"
+            onClick={() => removeCategory(favorite.id, category.id)}
+          >
+            {category.name}👍
+          </Button>
+        )
+      }
+    })
+  })
+
+  // for (const parameter of categoryList) {
+  //   for (const categoryId of parameter.image_id_arr) {
+  //     if (favorite.id === categoryId && parameter.id === categoryId) {
+  //       console.log(parameter.name, `applies to image id#`, favorite.id);
+  //       return (
+  //         <Button
+  //           variant="contained"
+  //           onClick={(evt) => removeCategory(favorite.id, category.id)}
+  //         >
+  //           {category.name}
+  //         </Button>
+  //       )
+  //     }
+  //   }
+  // }
+  return (
+    <Button
+      variant="outlined"
+      onClick={() => addCategory(favorite.id, category.id)}
+    >
+      {category.name}👎
+    </Button>
   )
-
 
 
 }
