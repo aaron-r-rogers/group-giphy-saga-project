@@ -7,10 +7,10 @@ import Heart from '../Heart/Heart.jsx';
 function GifCard({favorite, type, gif}) {
   // console.log('image', image);
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 440 }}>
       <CardMedia
         component="img"
-        height="200"
+        height="400"
         image={favorite.url}
         // gif.url here 👆 after i get redux store obj imported
       />
