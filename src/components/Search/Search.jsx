@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import SearchIcon from '@mui/icons-material/Search';
-
+import Heart from '../Heart/Heart.jsx';
 
 function Search () {
     const dispatch = useDispatch();
     const searchResults = useSelector((store) => store.searchResults)
     let [searchInput, setSearchInput] = useState('');
-    const [clicked, setClicked] = useState(false)
+    
 
     const searchGiphy = () => {
+       
         console.log('search', searchGiphy);
         // sending this to rootSaga
         dispatch({
@@ -19,14 +19,6 @@ function Search () {
             payload: searchInput
         })
     }; // end of searchGiphy
-
-    const clickHandler = (url) => {
-        console.log('click', url)
-        dispatch({
-            type: 'MAKE_FAVORITE',
-            payload: url
-        })
-    }
 
     return (
         <>
@@ -39,9 +31,9 @@ function Search () {
                     value={searchInput}
                     onChange={(event) => setSearchInput(event.target.value)}
                 />
-                <button onClick={searchGiphy}>
+                <Button onClick={searchGiphy}>
                     <SearchIcon fontSize='x-small'/>
-                </button>
+                </Button>
             </form>
             <div>
                 {searchResults.map((gif) => (
@@ -49,11 +41,10 @@ function Search () {
                     <img  
                         src={gif.images.fixed_height.url}
                     />
-                    <FavoriteIcon style={{ color: 'red' }}  onClick={() => clickHandler(gif.images.fixed_height.url)} />
+                    <Heart url="gif.images.fixed_height.url"/>
                     </div>
                 ))}
             </div>
-
         </div>
         </>
     )
