@@ -1,4 +1,3 @@
-import Container from '@mui/material/Container';
 import './Favorites.css';
 import { useDispatch, useSelector } from 'react-redux';
 import GifCard from '../GifCard/GifCard';
@@ -12,14 +11,14 @@ function Favorites() {
   // console.log('faveList', faveList);
 
   return (
-    <Container maxWidth="lg">
+    <div id="container">
       {faveList.map((favorite) =>
         <GifCard
           key={favorite.id}
           favorite={favorite}
         />
       )}
-    </Container>
+    </div>
   )
 }
 
