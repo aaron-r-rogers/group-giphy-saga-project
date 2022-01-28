@@ -1,9 +1,10 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useDispatch } from  'react-redux';
+import { useDispatch } from 'react-redux';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Search from '../Search/Search.jsx';
-import Favorites from '../Favorites/Favorites.jsx'
+import Favorites from '../Favorites/Favorites.jsx';
+import './App.css';
 
 
 
@@ -20,21 +21,23 @@ function App(props) {
     });
   }
 
-  
-useEffect(getElements, [])
+
+  useEffect(getElements, [])
   return (
     <Router>
 
-      <div>
-        <h1>Giphy Search!</h1>
-        <p><Link to="/">
+      <div id="right-header">
+        <div id="title">
+          <h1>Giphy Search!</h1>
+        </div>
+        <div id="links"><Link to="/">
           Search Page
         </Link>
-        <br />
-        <Link to="/favorites">
-          Favorites Page
-        </Link>
-        </p>
+          <br />
+          <Link to="/favorites">
+            Favorites Page
+          </Link>
+        </div>
       </div>
       {/* have to create header component  */}
       {/* <Header /> */}
