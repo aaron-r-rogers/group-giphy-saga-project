@@ -1,0 +1,13 @@
+#right-header{
+  display:flex;
+  flex-flow:row;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+#title{
+  margin-top: -10px;
+}
+#links{
+  margin-right: 25%;
+  margin-top: 10px;
+}
