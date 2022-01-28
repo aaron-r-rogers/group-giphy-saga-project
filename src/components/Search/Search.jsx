@@ -8,16 +8,32 @@ function Search () {
     const dispatch = useDispatch();
     const searchResults = useSelector((store) => store.searchResults)
     let [searchInput, setSearchInput] = useState('');
+    let [offset, setOffset] = useState(0);
     
-
     const searchGiphy = () => {
         console.log('search', searchGiphy);
         // sending this to rootSaga
         dispatch({
             type: 'GET_SEARCH',
-            payload: searchInput
+            payload: {searchInput: searchInput, offset: offset}
         })
     }; // end of searchGiphy
+
+    const nextSet = () => {
+        setOffset(offset+=6);
+        dispatch({
+            type: 'GET_SEARCH',
+            payload: {searchInput: searchInput, offset: offset}
+        })
+    }
+
+    const lastSet = () => {
+        setOffset(offset-=6);
+        dispatch({
+            type: 'GET_SEARCH',
+            payload: {searchInput: searchInput, offset: offset}
+        })
+    }
 
     return (
         <>
@@ -33,6 +49,9 @@ function Search () {
                 <Button onClick={searchGiphy}>
                     <SearchIcon fontSize='x-small'/>
                 </Button>
+                <br></br>
+                <Button variant="contained" onClick={lastSet}>LAST 6 GIFs</Button>
+                <Button variant="contained" onClick={nextSet}>NEXT 6 GIFs</Button>
             </form>
             <div>
                 {searchResults.map((gif) => (

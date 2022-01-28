@@ -28,7 +28,10 @@ function* getSearch (action) {
     
     try{
     console.log('made it to getSearch');
-    let response = yield axios.get('/search', {params: {q: action.payload}});
+    let response = yield axios.get('/search', {params: {
+        q: action.payload.searchInput,
+        offset: action.payload.offset
+    }});
     console.log('getSearch response.data is:', response.data);
     //send data to searchReducer
     yield put({
