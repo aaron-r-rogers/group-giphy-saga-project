@@ -12,6 +12,7 @@ function Search () {
     
     const searchGiphy = () => {
         console.log('search', searchGiphy);
+        setOffset(0)
         // sending this to rootSaga
         dispatch({
             type: 'GET_SEARCH',
