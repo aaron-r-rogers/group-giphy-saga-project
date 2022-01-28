@@ -5,20 +5,38 @@ import SearchIcon from '@mui/icons-material/Search';
 import GifCard from '../GifCard/GifCard'
 
 function Search() {
-  const dispatch = useDispatch();
-  const searchResults = useSelector((store) => store.searchResults)
-  let [searchInput, setSearchInput] = useState('');
+    const dispatch = useDispatch();
+    const searchResults = useSelector((store) => store.searchResults)
+    let [searchInput, setSearchInput] = useState('');
+    let [offset, setOffset] = useState(0);
 
 
-  const searchGiphy = (evt) => {
+    const searchGiphy = (evt) => {
     evt.preventDefault();
+    setOffset(0);
     console.log('search', searchGiphy);
     // sending this to rootSaga
     dispatch({
-      type: 'GET_SEARCH',
-      payload: searchInput
+        type: 'GET_SEARCH',
+        payload: {searchInput: searchInput, offset: offset}
     })
   }; // end of searchGiphy
+
+  const nextSet = () => {
+    setOffset(offset+=6);
+    dispatch({
+        type: 'GET_SEARCH',
+        payload: {searchInput: searchInput, offset: offset}
+    })
+}
+
+const lastSet = () => {
+    setOffset(offset-=6);
+    dispatch({
+        type: 'GET_SEARCH',
+        payload: {searchInput: searchInput, offset: offset}
+    })
+}
 
   return (
     <>
@@ -31,10 +49,19 @@ function Search() {
             value={searchInput}
             onChange={(event) => setSearchInput(event.target.value)}
           />
-          <Button onClick={() => searchGiphy()}>
+          <Button onClick={(evt) => searchGiphy(evt)}>
             <SearchIcon fontSize='x-small' />
           </Button>
         </form>
+        {searchResults.length>0 ? 
+        <>
+        <Button variant="contained" onClick={lastSet}>LAST 6 GIFs</Button>
+        <Button variant="contained" onClick={nextSet}>NEXT 6 GIFs</Button>
+        </>
+        :
+        <></>
+    }
+    
         <div id="container">
           {searchResults.map((gif) => (
             <GifCard
