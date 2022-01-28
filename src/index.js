@@ -75,7 +75,7 @@ function* fetchFavorites () {
     try{
     console.log('made it to fetchFavorites');
     let response = yield axios.get('/api/favorite');
-    console.log('index.js fetchFavorites response.data is:', response.data);
+    // console.log('index.js fetchFavorites response.data is:', response.data);
     //send data to favoritesReducer
     yield put({
         type: 'SET_FAVORITES',
@@ -96,7 +96,7 @@ function* fetchFavorites () {
 const favoritesReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_FAVORITES':
-            return [...state, action.payload];
+            return action.payload;
         default:
             return state;
     }
@@ -104,9 +104,9 @@ const favoritesReducer = (state = [], action) => {
 
 function* fetchCategories () {
     try{
-    console.log('made it to fetchCategories');
+    // console.log('made it to fetchCategories');
     let response = yield axios.get('/api/category');
-    console.log('index.js fetchCategories response.data is:', response.data);
+    // console.log('index.js fetchCategories response.data is:', response.data);
     //send data to categoriesReducer
     yield put({
         type: 'SET_CATEGORIES',
@@ -127,7 +127,7 @@ function* fetchCategories () {
 // Reducer that holds our results
 const categoriesReducer = (state = [], action) => {
     if(action.type === 'SET_CATEGORIES') {
-        console.log('categoriesReducer payload:', action.payload);
+        // console.log('categoriesReducer payload:', action.payload);
         return action.payload
     }
     return state;
