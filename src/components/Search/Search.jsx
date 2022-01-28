@@ -13,11 +13,12 @@ function Search() {
 
     const searchGiphy = (evt) => {
     evt.preventDefault();
+    setOffset(0);
     console.log('search', searchGiphy);
     // sending this to rootSaga
     dispatch({
         type: 'GET_SEARCH',
-        payload: searchInput
+        payload: {searchInput: searchInput, offset: offset}
     })
   }; // end of searchGiphy
 
@@ -48,7 +49,7 @@ const lastSet = () => {
             value={searchInput}
             onChange={(event) => setSearchInput(event.target.value)}
           />
-          <Button onClick={() => searchGiphy()}>
+          <Button onClick={(evt) => searchGiphy(evt)}>
             <SearchIcon fontSize='x-small' />
           </Button>
         </form>
