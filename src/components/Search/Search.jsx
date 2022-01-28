@@ -53,9 +53,15 @@ const lastSet = () => {
             <SearchIcon fontSize='x-small' />
           </Button>
         </form>
-        <br></br>
-                <Button variant="contained" onClick={lastSet}>LAST 6 GIFs</Button>
-                <Button variant="contained" onClick={nextSet}>NEXT 6 GIFs</Button>
+        {searchResults.length>0 ? 
+        <>
+        <Button variant="contained" onClick={lastSet}>LAST 6 GIFs</Button>
+        <Button variant="contained" onClick={nextSet}>NEXT 6 GIFs</Button>
+        </>
+        :
+        <></>
+    }
+    
         <div id="container">
           {searchResults.map((gif) => (
             <GifCard
