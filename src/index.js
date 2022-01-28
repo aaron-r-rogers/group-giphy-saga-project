@@ -61,7 +61,9 @@ function* makeFavorite (action) {
 
     // Post favorite to the server
     // action.payload is url; write sql in router
-    yield axios.post('/api/favorite', action.payload);
+    // must send OBJECT
+    yield axios.post('/api/favorite', {data: action.payload})
+    // yield axios.post('/api/favorite', action.payload);
     
     // Run the fetchFavorites saga to get latest favs...
     yield put({
@@ -94,7 +96,7 @@ function* fetchFavorites () {
 const favoritesReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_FAVORITES':
-            return action.payload;
+            return [...state, action.payload];
         default:
             return state;
     }

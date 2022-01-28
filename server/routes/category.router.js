@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
       res.send(result.rows);
     })
     .catch((error) => {
-      console.log(`Error on query ${error}`);
+      console.log(`Error on GET db query /category`, error);
       res.sendStatus(500);
     });
 });
