@@ -4,6 +4,7 @@ const router = express.Router();
 const axios = require('axios');
 
 router.get('/', (req, res) => {
+    console.log('req.query:', req.query)
     axios({
         method: 'GET',
         url: 'https://api.giphy.com/v1/gifs/search',

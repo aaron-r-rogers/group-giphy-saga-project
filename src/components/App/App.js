@@ -1,11 +1,26 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from  'react-redux';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import Search from '../Search/Search.jsx';
 import Favorites from '../Favorites/Favorites.jsx'
 
 
 
+
 function App(props) {
+  const dispatch = useDispatch();
+  const getElements = () => {
+    dispatch({
+      type: 'FETCH_FAVORITES'
+    });
+    dispatch({
+      type: 'FETCH_CATEGORIES'
+    });
+  }
+
+  
+useEffect(getElements, [])
   return (
     <Router>
 
