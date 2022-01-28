@@ -12,7 +12,7 @@ function Favorites() {
   // console.log('faveList', faveList);
 
   return (
-    <Container maxWidth="lg">
+    <Container id="container" maxWidth="lg">
       {faveList.map((favorite) =>
         <GifCard
           key={favorite.id}

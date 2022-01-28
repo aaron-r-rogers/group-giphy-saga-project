@@ -1,10 +1,10 @@
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-import { useSelector } from 'react-redux';
 import CategoriesList from '../CategoriesList/CategoriesList'
+import Heart from '../Heart/Heart.jsx';
 
-function GifCard({favorite}) {
-  const image = favorite.url;
+
+function GifCard({favorite, type, gif}) {
   // console.log('image', image);
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -14,9 +14,15 @@ function GifCard({favorite}) {
         image={favorite.url}
         // gif.url here 👆 after i get redux store obj imported
       />
+      {type === "search" ? 
+      <Heart 
+      url={gif.images.fixed_height.url} 
+      /> 
+      :
       <CategoriesList 
         favorite={favorite}
       />
+      }
     </Card>
   )
 } // end GifCard
