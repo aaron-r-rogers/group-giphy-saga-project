@@ -6,12 +6,12 @@ const router = express.Router();
 router.get('/', (req, res) => {
   // return all categories
   const queryText = `
-    SELECT "category_id", "category"."name", 
+    SELECT "category"."id", "category"."name", 
       ARRAY_AGG("image_id") AS "image_id_arr"
     FROM "category_junction"
-    JOIN "category"
+    RIGHT JOIN "category"
       ON "category"."id" = "category_junction"."category_id"
-    GROUP BY "category_id", "category"."name";
+    GROUP BY "category"."id", "category"."name";
   `;
   pool
     .query(queryText)
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
       res.send(result.rows);
     })
     .catch((error) => {
-      console.log(`Error on query ${error}`);
+      console.log(`Error on GET db query /category`, error);
       res.sendStatus(500);
     });
 });

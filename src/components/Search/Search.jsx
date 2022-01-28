@@ -12,7 +12,7 @@ function Search () {
     const [clicked, setClicked] = useState(false)
 
     const searchGiphy = () => {
-        console.log('search', searchGiphy);
+        console.log('search');
         // sending this to rootSaga
         dispatch({
             type: 'GET_SEARCH',
