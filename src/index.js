@@ -14,12 +14,14 @@ const sagaMiddleware = createSagaMiddleware();
 
 // Create the rootSaga generator function
 function* rootSaga() {
-    // does searchResults need to be a Saga or just a reducer?
     yield takeEvery('GET_SEARCH', getSearch);//GET
     yield takeEvery('MAKE_FAVORITE', makeFavorite);//POST
     yield takeEvery('FETCH_FAVORITES', fetchFavorites);//GET
     yield takeEvery('FETCH_CATEGORIES', fetchCategories);//GET
+    //yield takeEvery('ADD_CATEGORY', addCategory);//POST
 };
+
+// /api/favorite
 
 function* getSearch (action) {
     console.log('action in get search', action);
@@ -57,15 +59,12 @@ const searchResults = (state = [], action) => {
 function* makeFavorite (action) {
     console.log('in makeFavorite', action);
 
-    // action.payload looks like this...
-    // {
-    //     image_id: '',
-    //     category_id: ''
-    // }
-
     // Post favorite to the server
-    yield axios.post('/api/favorite', action.payload);
-
+    // action.payload is url; write sql in router
+    // must send OBJECT
+    yield axios.post('/api/favorite', {data: action.payload})
+    // yield axios.post('/api/favorite', action.payload);
+    
     // Run the fetchFavorites saga to get latest favs...
     yield put({
         type: 'FETCH_FAVORITES'
@@ -97,7 +96,7 @@ function* fetchFavorites () {
 const favoritesReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_FAVORITES':
-            return [...state, ...action.payload];
+            return [...state, action.payload];
         default:
             return state;
     }
@@ -146,7 +145,7 @@ const storeInstance = createStore(
     applyMiddleware(sagaMiddleware, logger),
 );
 
-// // Pass rootSaga into our sagaMiddleware
+// Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(

@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 // Route includes
 const favoriteRouter = require('./routes/favorite.router');
 const categoryRouter = require('./routes/category.router');
-const searchRouter = require('./routes/search.router')
+const searchRouter = require('./routes/search.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
