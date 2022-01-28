@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 
-
 function Heart ({url}) {
     const [clicked, setClicked] = useState(false)
     const dispatch = useDispatch();
