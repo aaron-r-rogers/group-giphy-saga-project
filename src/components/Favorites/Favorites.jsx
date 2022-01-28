@@ -12,7 +12,7 @@ function Favorites() {
   const categoryList = useSelector(store => store.categoriesReducer);
   const faveList = useSelector(store => store.favoritesReducer);
 
-
+  // each gif has a card element that displays the gif and its assigned categories
   const GifCard = ({ category, favorite }) => {
     // 
     // 
@@ -32,6 +32,7 @@ function Favorites() {
     )
   } // end GifCard
 
+  //each gifCard has these categories underneath it, and they are toggle-able
   const CategoriesList = ({ favorite }) => {
     // 
     // 
@@ -40,6 +41,7 @@ function Favorites() {
       <div className="categories-container">
         {categoryList.map(category =>
           <Category
+            key={category.id}
             category={category}
             favorite={favorite}
           />
@@ -77,6 +79,13 @@ function Favorites() {
     }
     */
 
+    return(
+      <>
+        {category.name} <br />
+      </>
+    )
+
+
 
   }
 
@@ -105,6 +114,7 @@ function Favorites() {
       Favorites
       {faveList.map(favorite =>
         <GifCard
+          key={favorite.id}
           favorite={favorite}
         />
 
