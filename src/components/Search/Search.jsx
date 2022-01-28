@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
-import Heart from '../Heart/Heart.jsx';
+import Heart from '../Heart/Heart';
 
 function Search () {
     const dispatch = useDispatch();
@@ -40,7 +40,7 @@ function Search () {
                     <img  
                         src={gif.images.fixed_height.url}
                     />
-                    <Heart url="gif.images.fixed_height.url"/>
+                    <Heart url={gif.images.fixed_height.url}/>
                     </div>
                 ))}
             </div>
