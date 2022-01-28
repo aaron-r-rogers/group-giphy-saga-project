@@ -1,4 +1,8 @@
 #container{
   display: flex;
   flex-flow: row wrap;
+  width: 90%
+}
+.gifCard{
+  margin: 1em;
 }

@@ -7,7 +7,7 @@ import Heart from '../Heart/Heart.jsx';
 function GifCard({favorite, type, gif}) {
   // console.log('image', image);
   return (
-    <Card sx={{ width: 440 }}>
+    <Card className="gifCard" sx={{ width: 440 }}>
       <CardMedia
         component="img"
         height="400"
