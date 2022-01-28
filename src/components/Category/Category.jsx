@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function Category({ favorite, category }) {
   const categoryList = useSelector(store => store.categoriesReducer);
+  
+  let isAssigned = false;
+
   const removeCategory = (favId, catId) => {
     console.log('remove!', favId, catId)
     // dispatch({
@@ -26,47 +29,22 @@ function Category({ favorite, category }) {
     // })
   }
 
-  categoryList.map(parameter => {
-    parameter.image_id_arr.map(imageID => {
-      if (parameter.id === category.id && imageID !== null) {
-        console.log(`imageID`, imageID, 'has category', parameter.id)
-        return (
-          <Button
-            variant="contained"
-            onClick={() => removeCategory(favorite.id, category.id)}
-          >
-            {category.name}👍
-          </Button>
-        )
+  for (const parameter of categoryList) {
+    for (const imageID of parameter.image_id_arr) {
+      if (parameter.id === category.id && imageID === favorite.id) {
+        console.log(`imageID`, imageID, 'has category', parameter.id);
+        isAssigned = true;
       }
-    })
-  })
-
-  // for (const parameter of categoryList) {
-  //   for (const categoryId of parameter.image_id_arr) {
-  //     if (favorite.id === categoryId && parameter.id === categoryId) {
-  //       console.log(parameter.name, `applies to image id#`, favorite.id);
-  //       return (
-  //         <Button
-  //           variant="contained"
-  //           onClick={(evt) => removeCategory(favorite.id, category.id)}
-  //         >
-  //           {category.name}
-  //         </Button>
-  //       )
-  //     }
-  //   }
-  // }
+    }
+  }
   return (
     <Button
-      variant="outlined"
-      onClick={() => addCategory(favorite.id, category.id)}
+      variant={isAssigned ? "contained" : "outlined"}
+      onClick={() => isAssigned ? removeCategory(favorite.id, category.id) : addCategory(favorite.id, category.id)}
     >
-      {category.name}👎
+      {category.name}
     </Button>
   )
-
-
 }
 
 export default Category;
