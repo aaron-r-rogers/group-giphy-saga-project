@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function Category({ favorite, category }) {
   const categoryList = useSelector(store => store.categoriesReducer);
-  
+  const dispatch = useDispatch;
   let isAssigned = false;
 
   const removeCategory = (favId, catId) => {
