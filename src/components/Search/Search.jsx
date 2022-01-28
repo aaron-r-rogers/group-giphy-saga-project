@@ -40,7 +40,7 @@ function Search () {
                     <img  
                         src={gif.images.fixed_height.url}
                     />
-                    <Heart url="gif.images.fixed_height.url"/>
+                    <Heart url={gif.images.fixed_height.url}/>
                     </div>
                 ))}
             </div>
