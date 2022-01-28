@@ -18,10 +18,27 @@ function* rootSaga() {
     yield takeEvery('MAKE_FAVORITE', makeFavorite);//POST
     yield takeEvery('FETCH_FAVORITES', fetchFavorites);//GET
     yield takeEvery('FETCH_CATEGORIES', fetchCategories);//GET
-    //yield takeEvery('ADD_CATEGORY', addCategory);//POST
+    yield takeEvery('ADD_CATEGORY', addCategory);//POST
+    //{
+    //     category_id: 0,
+    //     favorite_id: 0
+    // }
 };
 
-// /api/favorite
+function* addCategory (action) {
+    console.log('in addCategory', action);
+
+    yield axios.post('/api/category', {
+        category_id: action.payload.category_id,
+        image_id: action.payload.favorite_id
+    })
+    // yield axios.post('/api/favorite', action.payload);
+    
+    // Run the fetchFavorites saga to get latest favs...
+    yield put({
+        type: 'FETCH_FAVORITES'
+    });
+};
 
 function* getSearch (action) {
     console.log('action in get search', action);

@@ -24,4 +24,26 @@ router.get('/', (req, res) => {
     });
 });
 
+// add an image to a category
+router.post('/', (req, res) => {
+  console.log("POST category req.body.data:", req.body.data);
+  // const queryText = `
+  // INSERT INTO "category_junction" ("category_id", "image_id")
+  // VALUES ($1, $2);`
+  // const queryParams=[
+  //   req.body.data.category_id, 
+  //   req.body.data.favorite_id
+  // ];
+
+  // pool
+  //   .query(queryText, queryParams)
+  //   .then((result) => {
+  //     res.send(result.rows);
+  //   })
+  //   .catch((error) => {
+  //     console.log(`Error on POST to db /favorites`, error);
+  //     res.sendStatus(500);
+  //   });
+});
+
 module.exports = router;

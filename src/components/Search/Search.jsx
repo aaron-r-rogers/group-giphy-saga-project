@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
-import Heart from '../Heart/Heart.jsx';
+import Heart from '../Heart/Heart';
 
 function Search () {
     const dispatch = useDispatch();
