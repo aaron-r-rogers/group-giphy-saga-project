@@ -11,7 +11,6 @@ function Search () {
     
 
     const searchGiphy = () => {
-       
         console.log('search', searchGiphy);
         // sending this to rootSaga
         dispatch({
