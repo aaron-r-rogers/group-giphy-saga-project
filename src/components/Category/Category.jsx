@@ -9,24 +9,24 @@ function Category({ favorite, category }) {
 
   const removeCategory = (favId, catId) => {
     console.log('remove!', favId, catId)
-    // dispatch({
-    //   type: 'REMOVE_CATEGORY',
-    //   payload: {
-    //     category_id: catId,
-    //     favorite_id: favId
-    //   }
-    // })
+    dispatch({
+      type: 'REMOVE_CATEGORY',
+      payload: {
+        category_id: catId,
+        favorite_id: favId
+      }
+    })
   }
 
   const addCategory = (favId, catId) => {
     console.log('add!', favId, catId)
-    // dispatch({
-    //   type: 'ADD_CATEGORY',
-    //   payload: {
-    //     category_id: catId,
-    //     favorite_id: favId
-    //   }
-    // })
+    dispatch({
+      type: 'ADD_CATEGORY',
+      payload: {
+        category_id: catId,
+        favorite_id: favId
+      }
+    })
   }
 
   for (const parameter of categoryList) {
